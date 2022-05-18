@@ -1,13 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+import SignupReducer from './features/SignupReducer'
+import SigninReducer from './features/SigninReducer'
+import FormSelectorReducer from "./features/FormSelector";
+
+const store = configureStore({
+  reducer: {
+    signup:SignupReducer,
+    signin:SigninReducer,
+    formselector:FormSelectorReducer
+  },
+});
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
